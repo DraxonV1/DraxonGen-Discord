@@ -1,12 +1,9 @@
 {
-  "notify": true,
-  "notification_icon": "term.ico",
-
-  "mail_type": "hotmail",
+  "notify": false,
+  "notification_icon": "icon.ico",
 
   "mode": "adb",
-  "timer": 15,
+  "timer": 0,
 
-  "after_create_timer": 30,
-  "discord_app_path": "C:\\Users\\Administrator\\AppData\\Local\\DiscordCanary\\app-1.0.828\\DiscordCanary.exe"
+  "after_create_timer": 30
 }
