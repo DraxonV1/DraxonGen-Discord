@@ -4,6 +4,7 @@
 
   "mode": "adb",
   "timer": 0,
+  "proxy_mode": "socks5", 
 
-  "after_create_timer": 30
+  "after_create_timer": 15
 }
