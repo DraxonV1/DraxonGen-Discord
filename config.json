@@ -1,10 +1,11 @@
 {
+  "proxy_mode": "http",
+  "http_lib": "curl",
+  "mode": "normal",
+  "delay_between_accs": 10,
+  "adb_rotate_every": 2,
+  "after_create_timer": 15,
+  "check_ratelimit": false,
   "notify": false,
-  "notification_icon": "icon.ico",
-
-  "mode": "adb",
-  "timer": 0,
-  "proxy_mode": "socks5", 
-
-  "after_create_timer": 15
+  "notification_icon": ""
 }
