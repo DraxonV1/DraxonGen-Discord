@@ -1,0 +1,10 @@
+requests
+psutil
+colorama
+nodriver
+pystyle
+notify-py
+urllib3
+easygradients
+tls-client
+websocket-client

@@ -1,0 +1,29 @@
+name: Release v7
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Cache build artifacts
+        run: echo "tool.exe already in repo; no build needed"
+      - name: Create release draft
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: MuskServices DTA ${{ github.ref_name }}
+          body_path: CHANGELOG.md
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload tool.exe asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: tool.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

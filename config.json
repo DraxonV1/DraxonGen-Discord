@@ -1,0 +1,13 @@
+{
+  "browser": "edge", 
+  "mode": "private", 
+  "proxy_mode": "http",
+  "http_lib": "curl",
+  "ip_rotation": "none",
+  "delay_between_accs": 60,
+  "adb_rotate_every": 2,
+  "after_create_timer": 15,
+  "check_ratelimit": false,
+  "notify": false,
+  "notification_icon": ""
+}
