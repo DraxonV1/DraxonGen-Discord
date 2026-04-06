@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "muskdta"
+version = "0.0.0"
+description = "MuskServices DTA — Python launcher, updater & config manager"
+authors = [{ name = "DraxonV1" }]
+requires-python = ">=3.9"
+readme = "README.md"
+license = { text = "MIT" }
+
+dependencies = [
+    "requests>=2.28.0",
+    "easygradients>=0.1.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/DraxonV1/MuskServices-DTA"
+Discord  = "https://discord.gg/dpk45Be2e3"
+
+[project.scripts]
+muskdta = "muskdta.cli:main"
+

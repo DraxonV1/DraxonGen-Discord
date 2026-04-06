@@ -1,0 +1,60 @@
+name: Publish + Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build tools
+        run: pip install build twine
+
+      - name: Set version in pyproject.toml
+        run: |
+          sed -i "s/version = \".*\"/version = \"${{ steps.version.outputs.version }}\"/" pyproject.toml
+
+      - name: Build package
+        run: python -m build
+
+      - name: Publish to PyPI
+        run: python -m twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+
+      # Auto-detect all binaries inside /binaries folder
+      - name: Collect binaries
+        id: binaries
+        run: |
+          if [ -d "binaries" ]; then
+            FILES=$(find binaries -type f)
+          else
+            FILES=""
+          fi
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: CHANGELOG.md
+          files: ${{ steps.binaries.outputs.files }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
