@@ -19,7 +19,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8") if (here / "
 setup(
     # â”€â”€ Identity â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     name="muskdta",
-    version="1.0.1",
+    version="0.0.0",
     author="DraxonV1",
     author_email="",
     description="MuskServices DTA â€” Python launcher, updater & config manager",

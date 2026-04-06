@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "muskdta"
-version = "1.0.1"
+version = "0.0.0"
 description = "MuskServices DTA â€” Python launcher, updater & config manager"
 authors = [{ name = "DraxonV1" }]
 requires-python = ">=3.9"
