@@ -4,7 +4,7 @@ A Discord Token Automation platform built for both workers and private users. Ge
 
 ---
 
-## Worker System — $0.02 per EV
+## Worker System - $0.02 per EV
 
 Start as a worker and generate immediately. No upfront cost, just your key and a stable setup.
 
@@ -19,7 +19,7 @@ Start as a worker and generate immediately. No upfront cost, just your key and a
 
 ---
 
-## Private System — Credits from $0.02
+## Private System - Credits from $0.02
 
 Full private generation access with your own credit balance.
 

@@ -1,5 +1,8 @@
 ﻿name: Publish + Release
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
@@ -27,20 +30,23 @@ jobs:
       - name: Install build tools
         run: pip install build twine
 
-      - name: Set version in pyproject.toml
+      - name: Set version
         run: |
-          sed -i "s/version = \".*\"/version = \"${{ steps.version.outputs.version }}\"/" pyproject.toml
+          VERSION="${{ steps.version.outputs.version }}"
+          sed -i "s/version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+          if [ -f setup.py ]; then
+            sed -i "s/version=\".*\"/version=\"$VERSION\"/" setup.py
+          fi
 
       - name: Build package
         run: python -m build
 
       - name: Publish to PyPI
-        run: python -m twine upload dist/*
+        run: python -m twine upload dist/* --verbose
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
 
-      # Auto-detect all binaries inside /binaries folder
       - name: Collect binaries
         id: binaries
         run: |
@@ -49,11 +55,14 @@ jobs:
           else
             FILES=""
           fi
-          echo "files<<EOF" >> $GITHUB_OUTPUT; echo "$FILES" >> $GITHUB_OUTPUT; echo "EOF" >> $GITHUB_OUTPUT
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          name: Release ${{ steps.version.outputs.version }}
           body_path: README.md
           files: ${{ steps.binaries.outputs.files }}
         env:

@@ -3,46 +3,25 @@ from pathlib import Path
 
 # Read long description from README if present
 here = Path(__file__).parent
-long_description = (here / "README.md").read_text(encoding="utf-8") if (here / "README.md").exists() else ""
-
-# ── Nuitka compilation metadata (embedded into the compiled .exe) ────────────
-# When building with Nuitka use:
-#   python -m nuitka --onefile --product-name="MuskDTA Launcher"
-#                    --product-version=1.0.0
-#                    --file-description="MuskServices DTA Launcher"
-#                    --company-name="DraxonV1 / MuskServices"
-#                    --copyright="Copyright (c) 2025 DraxonV1"
-#                    --windows-icon-from-ico=icon.ico   (optional)
-#                    muskdta/cli.py
-# ─────────────────────────────────────────────────────────────────────────────
+readme = here / "README.md"
+long_description = readme.read_text(encoding="utf-8") if readme.exists() else ""
 
 setup(
-    # ── Identity ──────────────────────────────────────────────────────────────
+    # Identity
     name="muskdta",
-    version="1.0.0",
+    version="0.0.0",
     author="DraxonV1",
     author_email="",
-    description="MuskServices DTA — Python launcher, updater & config manager",
+    description="MuskServices DTA - Python launcher, updater & config manager",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/DraxonV1/MuskServices-DTA",
     project_urls={
         "Discord": "https://discord.gg/dpk45Be2e3",
-        "Source":  "https://github.com/DraxonV1/MuskServices-DTA",
+        "Source": "https://github.com/DraxonV1/MuskServices-DTA",
     },
 
-    # ── Nuitka metadata (picked up at compile time) ───────────────────────────
-    options={
-        "nuitka": {
-            "product-name":    "MuskDTA Launcher",
-            "product-version": "1.0.0",
-            "file-description":"MuskServices DTA Launcher",
-            "company-name":    "DraxonV1 / MuskServices",
-            "copyright":       "Copyright (c) 2025 DraxonV1",
-        }
-    },
-
-    # ── Package contents ──────────────────────────────────────────────────────
+    # Package contents
     packages=find_packages(),
     python_requires=">=3.9",
 
